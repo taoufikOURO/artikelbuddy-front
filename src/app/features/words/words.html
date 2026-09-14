@@ -1,0 +1,40 @@
+<section class="words-head">
+    <div>
+        <p class="eyebrow">Bibliothèque personnelle</p>
+        <h1>Réviser<span class="dot">.</span></h1>
+        <p class="subtitle">Retrouvez chaque mot, son article et l'état de votre progression.</p>
+    </div>
+    <div class="word-count">{{ data()?.total ?? 0 }} <span>mots dans votre niveau</span></div>
+</section>
+<section class="filters"><label>Niveau<select [(ngModel)]="level" (ngModelChange)="filter()">@for (option of levels;
+            track option) {<option [value]="option">{{ option }}</option>}</select></label><label>Progression<select
+            [(ngModel)]="status" (ngModelChange)="filter()">@for (option of statuses; track option.value) {<option
+                [value]="option.value">{{ option.label }}</option>}</select></label></section>
+@if (error()) {<p class="alert error">{{ error() }}</p>}
+@if (loading()) {<div class="loading-state"><span class="loader"></span>
+    <p>Chargement des mots...</p>
+</div>} @else if (data(); as response) {
+<section class="words-table">
+    <div class="table-head"><span>Mot</span><span>Article</span><span>Progression</span><span>Réussites</span></div>
+    @for (word of response.words; track word.id) {<article class="word-row">
+        <div class="word-main"><span class="word-symbol">{{ word.word.slice(0, 1).toUpperCase() }}</span>
+            <div><strong>{{ word.word }}</strong><span class="translation-line"><small>FR</small>{{ word.fr_translation
+                    || '—' }}</span><span class="translation-line"><small>EN</small>{{ word.en_translation || '—'
+                    }}</span></div>
+        </div><span class="article-chip" [class]="word.article">{{ word.article }}</span>
+        <div class="progress-cell">
+            <div class="tiny-bar"><i [style.width.%]="progressWidth(word.correct_streak)"></i></div><span>{{
+                word.mastered_at ? 'Maîtrisé' : word.correct_streak ? word.correct_streak + ' / 3' : 'À découvrir'
+                }}</span>
+        </div><span class="attempts">{{ word.total_attempts }} <small>tentative{{ word.total_attempts > 1 ? 's' : ''
+                }}</small></span>
+    </article>}
+    @empty {<div class="empty-state"><span>⌕</span>
+        <p>Aucun mot ne correspond à ce filtre.</p>
+    </div>}
+</section>
+<div class="pagination"><span>Page {{ response.page }} sur {{ totalPages() }}</span>
+    <div><button type="button" (click)="changePage(-1)" [disabled]="page() === 1">←</button><button type="button"
+            (click)="changePage(1)" [disabled]="page() === totalPages()">→</button></div>
+</div>
+}

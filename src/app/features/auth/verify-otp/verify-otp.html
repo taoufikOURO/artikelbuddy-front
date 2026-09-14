@@ -1,0 +1,36 @@
+<div class="auth-page">
+    <div class="auth-aside"><a class="brand" routerLink="/login"><span class="brand-mark">D<span>·</span>D</span><span
+                class="brand-name">ArtikelBuddy</span></a>
+        <div class="aside-copy">
+            <p class="eyebrow">Presque prêt</p>
+            <h1>Un dernier code, puis on joue.</h1>
+            <p>Vérifiez votre adresse email pour garder votre progression bien à vous.</p>
+        </div>
+        <div class="aside-words"><span class="der">der</span><span class="die">die</span><span class="das">das</span>
+        </div>
+    </div>
+    <section class="auth-panel">
+        <div class="auth-card">
+            <p class="eyebrow">Vérification</p>
+            <h2>Confirmer votre email.</h2>
+            <p class="intro">Saisissez l'adresse utilisée lors de votre inscription et le code reçu.</p>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()"><label for="email">Adresse email</label><input id="email"
+                    type="email" formControlName="email" autocomplete="email" placeholder="vous@exemple.com" />@if
+                (form.controls.email.touched && form.controls.email.invalid)
+                {<small class="field-error">Saisissez une adresse email valide.</small>}<label for="otp_code">Code de
+                    validation</label><input id="otp_code" type="text" inputmode="numeric" maxlength="6"
+                    formControlName="otp_code" placeholder="000000" />@if (form.controls.otp_code.touched &&
+                form.controls.otp_code.invalid)
+                {<small class="field-error">Le code doit contenir 6 chiffres.</small>}@if (errorMessage()) {<p
+                    class="alert error">{{ errorMessage() }}</p>}@if (successMessage()) {<p class="alert success">{{
+                    successMessage() }}</p>}<button class="primary-button" type="submit" [disabled]="isSubmitting()">{{
+                    isSubmitting() ? 'Vérification...' : 'Valider mon email' }} <span>→</span></button></form>
+            <div class="resend-area">
+                <span>Vous n’avez rien reçu ?</span>
+                <button class="resend-button" type="button" (click)="onResend()" [disabled]="isResending()">
+                    <span class="resend-icon">↻</span>{{ isResending() ? 'Envoi en cours...' : 'Renvoyer le code' }}
+                </button>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,54 @@
+@import '../../../shared/auth-layout.css';
+
+.resend-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.resend-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--aqua);
+  border-radius: 8px;
+  padding: 8px 11px;
+  background: white;
+  color: var(--deep);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 800;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+
+.resend-button:hover:not(:disabled) {
+  background: var(--aqua);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.resend-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.resend-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+@media (max-width: 520px) {
+  .resend-area {
+    flex-direction: column;
+    gap: 9px;
+  }
+}

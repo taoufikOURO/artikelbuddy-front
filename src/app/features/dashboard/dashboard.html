@@ -1,0 +1,71 @@
+@if (loading()) {
+<div class="loading-state"><span class="loader"></span>
+    <p>On prépare votre espace...</p>
+</div>
+} @else if (progress(); as stats) {
+<section class="welcome-row">
+    <div>
+        <p class="eyebrow">Votre espace d'entraînement</p>
+        <h1>Bonjour, {{ auth.currentUser()?.pseudo }}<span class="dot">.</span></h1>
+        <p class="subtitle">Chaque réponse juste installe un peu plus le réflexe.</p>
+    </div>
+    <a class="primary-button compact" routerLink="/rush">Lancer un rush <span>→</span></a>
+</section>
+@if (error()) { <p class="alert error">{{ error() }}</p> }
+<section class="hero-progress">
+    <div class="hero-progress-copy">
+        <div class="level-label"><span>Niveau actuel</span><strong>{{ stats.level }}</strong></div>
+        <h2>{{ percent(stats.completion_ratio) }}<small>%</small></h2>
+        <p>de ce niveau est maîtrisé</p>
+    </div>
+    <div class="progress-ring" [style.--progress]="percent(stats.completion_ratio) + '%'" aria-label="Progression">
+        <div><strong>{{ stats.mastered_words }}</strong><span>/ {{ stats.total_words }} mots</span></div>
+    </div>
+    <div class="hero-next"><span class="mini-label">Prochain palier</span><strong>{{ stats.words_needed_to_complete }}
+            mots</strong>
+        <p>encore à maîtriser pour valider ce niveau.</p>@if (stats.level_completed) {<button class="secondary-button"
+            type="button" (click)="advance()" [disabled]="advancing()">{{ advancing() ? 'Passage...' : 'Passer au niveau
+            suivant' }} →</button>}
+    </div>
+</section>
+<section class="stats-grid">
+    <article class="stat-card"><span class="stat-icon mint">✓</span>
+        <div><strong>{{ stats.mastered_words }}</strong><span>Mots maîtrisés</span></div>
+    </article>
+    <article class="stat-card"><span class="stat-icon aqua">◒</span>
+        <div><strong>{{ percent(stats.accuracy) }}%</strong><span>Précision globale</span></div>
+    </article>
+    <article class="stat-card"><span class="stat-icon pale">↗</span>
+        <div><strong>{{ stats.total_rushes_played }}</strong><span>Rushs joués</span></div>
+    </article>
+    <article class="stat-card"><span class="stat-icon soft">★</span>
+        <div><strong>{{ stats.best_rush_score ?? '—' }}</strong><span>Meilleur score</span></div>
+    </article>
+</section>
+<section class="dashboard-columns">
+    <div class="panel review-panel">
+        <div class="panel-heading">
+            <div>
+                <p class="eyebrow">À consolider</p>
+                <h3>Votre prochaine révision</h3>
+            </div><a routerLink="/words">Voir tout →</a>
+        </div>
+        <div class="review-list">@for (word of stats.words_to_review.slice(0, 5); track word.id) {<div
+                class="review-row"><span class="article-chip" [class]="word.article">{{ word.article }}</span>
+                <div><strong>{{ word.word }}</strong><span>{{ word.fr_translation || word.en_translation || 'Traduction
+                        à découvrir' }}</span></div><span class="chevron">›</span>
+            </div>} @empty {<div class="empty-state"><span>✦</span>
+                <p>Tout est à jour. Lancez un rush pour continuer.</p>
+            </div>}</div>
+    </div>
+    <div class="panel activity-panel">
+        <p class="eyebrow">Votre rythme</p>
+        <h3>Dernière session</h3>
+        <div class="activity-score"><strong>{{ stats.last_rush_score ?? '—' }}</strong><span>/ 10<br>score</span></div>
+        <div class="activity-line"><span>Meilleure session</span><strong>{{ stats.best_rush_score ?? '—' }}/10</strong>
+        </div>
+        <div class="activity-line"><span>Dernière activité</span><strong>{{ formatDate(stats.last_rush_at) }}</strong>
+        </div><a class="text-link" routerLink="/rush">Reprendre l'entraînement →</a>
+    </div>
+</section>
+}
