@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -31,10 +31,11 @@ export class AuthService {
   }
 
   resendOtp(email: string): Observable<{ message: string }> {
+    const params = new HttpParams().set('email', email);
     return this.http.post<{ message: string }>(
       `${this.baseUrl}/resend-otp`,
-      { email },
-      { withCredentials: true },
+      {},
+      { params, withCredentials: true },
     );
   }
 
