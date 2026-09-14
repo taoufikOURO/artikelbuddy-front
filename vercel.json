@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://der-die-das-api-8klm.onrender.com/:path*"
+    }
+  ]
+}
