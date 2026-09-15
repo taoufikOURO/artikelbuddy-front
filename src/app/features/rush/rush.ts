@@ -11,6 +11,7 @@ import { LearningService } from '../../core/services/learning.service';
 })
 export class Rush {
   private readonly learning = inject(LearningService);
+  private audioContext: AudioContext | null = null;
   readonly game = signal<RushWords | null>(null);
   readonly summary = signal<RushSummary | null>(null);
   readonly currentIndex = signal(0);
@@ -46,6 +47,7 @@ export class Rush {
       .subscribe({
         next: (result) => {
           this.result.set(result);
+          this.playAnswerSound(result.is_correct);
           this.loading.set(false);
         },
         error: (e) => {
@@ -54,6 +56,33 @@ export class Rush {
         },
       });
   }
+  private playAnswerSound(isCorrect: boolean): void {
+    const audioContext = (this.audioContext ??= new AudioContext());
+    const notes = isCorrect ? [523.25, 659.25, 783.99] : [220, 174.61];
+    const noteLength = isCorrect ? 0.13 : 0.18;
+    const gap = isCorrect ? 0.075 : 0.03;
+    const volume = isCorrect ? 0.11 : 0.09;
+    const start = audioContext.currentTime;
+
+    void audioContext.resume();
+    notes.forEach((frequency, index) => {
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      const noteStart = start + index * (noteLength + gap);
+      const noteEnd = noteStart + noteLength;
+
+      oscillator.type = isCorrect ? 'sine' : 'triangle';
+      oscillator.frequency.setValueAtTime(frequency, noteStart);
+      gain.gain.setValueAtTime(0.0001, noteStart);
+      gain.gain.exponentialRampToValueAtTime(volume, noteStart + 0.012);
+      gain.gain.exponentialRampToValueAtTime(0.0001, noteEnd);
+      oscillator.connect(gain);
+      gain.connect(audioContext.destination);
+      oscillator.start(noteStart);
+      oscillator.stop(noteEnd + 0.01);
+    });
+  }
+
   next(): void {
     const game = this.game();
     if (!game) return;
