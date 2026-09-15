@@ -1,31 +1,33 @@
 <div class="auth-page">
-    <div class="auth-aside"><a class="brand" routerLink="/login"><span class="brand-mark">D<span>·</span>D</span><span
-                class="brand-name">ArtikelBuddy</span></a>
-        <div class="aside-copy">
-            <p class="eyebrow">L'allemand, mot après mot</p>
-            <h1>Le bon article devient un réflexe.</h1>
-            <p>Des sessions courtes et une progression claire pour apprivoiser der, die et das.</p>
-        </div>
-        <div class="aside-words"><span class="der">der</span><span class="die">die</span><span class="das">das</span>
-        </div>
+  <div class="auth-aside"><a class="brand"> </a>
+      <div class="aside-copy">
+        <p class="eyebrow">L'allemand, mot après mot</p>
+        <h1>Le bon article devient un réflexe.</h1>
+        <p>Des sessions courtes et une progression claire pour apprivoiser der, die et das.</p>
+      </div>
+      <div class="aside-words">
+        <span class="der">der</span>
+        <span class="die">die</span>
+        <span class="das">das</span>
+      </div>
+  </div>
+  <section class="auth-panel">
+    <div class="auth-card">
+      <p class="eyebrow">Bienvenue</p>
+      <h2>Content de vous revoir.</h2>
+      <p class="intro">Connectez-vous pour reprendre votre entraînement là où vous l'avez laissé.</p>
+      <form [formGroup]="form" (ngSubmit)="submit()"><label for="identifier">Pseudo ou adresse email</label><input
+          id="identifier" type="text" formControlName="identifier" autocomplete="username"
+          placeholder="ex. lena ou lena@mail.com" />@if (form.controls.identifier.touched &&
+        form.controls.identifier.invalid) {<small class="field-error">Ce champ est requis.</small>}<label
+          for="password">Mot de passe</label><input id="password" type="password" formControlName="password"
+          autocomplete="current-password" placeholder="Votre mot de passe" />@if
+        (form.controls.password.touched && form.controls.password.invalid) {<small class="field-error">Ce champ
+          est requis.</small>}<a class="forgot-link" routerLink="/forgot-password">Mot de passe oublié
+          ?</a>@if (error()) {<p class="alert error">{{ error() }}</p>}<button class="primary-button" type="submit"
+          [disabled]="submitting()">{{ submitting() ? 'Connexion...' : 'Se connecter' }}
+          <span>→</span></button></form>
+      <p class="auth-switch">Pas encore de compte ? <a routerLink="/register">Créer un compte</a></p>
     </div>
-    <section class="auth-panel">
-        <div class="auth-card">
-            <p class="eyebrow">Bienvenue</p>
-            <h2>Content de vous revoir.</h2>
-            <p class="intro">Connectez-vous pour reprendre votre entraînement là où vous l'avez laissé.</p>
-            <form [formGroup]="form" (ngSubmit)="submit()"><label for="identifier">Pseudo ou adresse email</label><input
-                    id="identifier" type="text" formControlName="identifier" autocomplete="username"
-                    placeholder="ex. lena ou lena@mail.com" />@if (form.controls.identifier.touched &&
-                form.controls.identifier.invalid) {<small class="field-error">Ce champ est requis.</small>}<label
-                    for="password">Mot de passe</label><input id="password" type="password" formControlName="password"
-                    autocomplete="current-password" placeholder="Votre mot de passe" />@if
-                (form.controls.password.touched && form.controls.password.invalid) {<small class="field-error">Ce champ
-                    est requis.</small>}<a class="forgot-link" routerLink="/forgot-password">Mot de passe oublié
-                    ?</a>@if (error()) {<p class="alert error">{{ error() }}</p>}<button class="primary-button"
-                    type="submit" [disabled]="submitting()">{{ submitting() ? 'Connexion...' : 'Se connecter' }}
-                    <span>→</span></button></form>
-            <p class="auth-switch">Pas encore de compte ? <a routerLink="/register">Créer un compte</a></p>
-        </div>
-    </section>
+  </section>
 </div>

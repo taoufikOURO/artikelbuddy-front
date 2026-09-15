@@ -1,86 +1,72 @@
 <main class="landing-page">
-    <nav class="landing-nav" [class.is-open]="menuOpen">
-        <a class="landing-brand" routerLink="/" (click)="closeMenu()">
-            <img src="favicon.svg" alt="" />
-            <span>ArtikelBuddy</span>
-        </a>
-        <button class="landing-menu" type="button" (click)="toggleMenu()" aria-label="Ouvrir le menu">☰</button>
-        <div class="landing-links">
-            <a class="nav-login" routerLink="/login" (click)="closeMenu()">Se connecter</a>
-            <a class="nav-signup" routerLink="/register" (click)="closeMenu()">Commencer <span>↗</span></a>
-        </div>
-    </nav>
+  <nav class="landing-nav" [class.is-open]="menuOpen">
+    <a class="landing-brand" routerLink="/" (click)="closeMenu()">
+      <img src="favicon.svg" alt="" />
+      <span><strong>ArtikelBuddy</strong><small>German article arena</small></span>
+    </a>
+    <button class="landing-menu" type="button" (click)="toggleMenu()" aria-label="Ouvrir le menu">☰</button>
+    <div class="landing-links">
+      <a class="nav-login" routerLink="/login" (click)="closeMenu()">Se connecter</a>
+      <a class="nav-signup" routerLink="/register" (click)="closeMenu()">Commencer <span>↗</span></a>
+    </div>
+  </nav>
 
-    <section class="landing-hero">
-        <div class="hero-copy">
-            <p class="landing-kicker"><span></span> L'allemand, mot après mot</p>
-            <h1>Les articles allemands deviennent <em>naturels.</em></h1>
-            <p class="hero-lead">ArtikelBuddy transforme vos révisions en petites victoires quotidiennes. Apprenez der,
-                die et das avec une méthode qui s'adapte à votre mémoire.</p>
-            <div class="hero-actions">
-                <a class="landing-primary" routerLink="/register">Commencer gratuitement <span>→</span></a>
-                <a class="landing-secondary" routerLink="/login">J'ai déjà un compte <span>↗</span></a>
-            </div>
-            <div class="hero-proof">
-                <div class="proof-avatars"><span>J</span><span>M</span><span>L</span></div><span>Rejoignez les
-                    apprenants qui révisent avec méthode.</span>
-            </div>
-        </div>
-        <div class="hero-visual" id="experience" aria-label="Aperçu d'une session ArtikelBuddy">
-            <div class="visual-caption"><span class="live-dot"></span> Session en cours <strong>A1</strong></div>
-            <div class="quiz-window">
-                <div class="quiz-top"><span>RUSH 04</span>
-                    <div class="quiz-progress"><i></i></div><span>04 <small>/ 10</small></span>
-                </div>
-                <p class="quiz-label">Quel article accompagne...</p>
-                <h2>Baum</h2>
-                <div class="quiz-translations"><span><b>FR</b> arbre</span><span><b>EN</b> tree</span></div>
-                <div class="quiz-options"><span>der</span><span>die</span><span>das</span></div>
-            </div>
-            <div class="visual-index">01 <span>/</span> 03</div>
-        </div>
-    </section>
+  <section class="landing-hero">
+    <div class="hero-copy">
+      <p class="landing-kicker"><span>01</span> Player one ready</p>
+      <h1>Transformez <em>der, die, das</em> en réflexe de jeu.</h1>
+      <p class="hero-lead">ArtikelBuddy transforme vos révisions en petites victoires quotidiennes. Apprenez der,
+        die et das avec une méthode qui s'adapte à votre mémoire.</p>
+      <div class="hero-actions">
+        <a class="landing-primary" routerLink="/register">Créer mon profil <span>↗</span></a>
+        <a class="landing-secondary" routerLink="/login">Continuer une partie <span>→</span></a>
+      </div>
+      <div class="hero-proof"><span class="proof-score">+120 XP</span><span>Une routine courte. Un score qui
+          monte.</span>
+      </div>
+    </div>
+  </section>
 
-    <section class="trust-strip"><span>UNE ROUTINE QUI S'INSTALLE</span>
-        <div><b>courte</b><i></i><b>active</b><i></i><b>personnelle</b></div>
-    </section>
+  <section class="trust-strip"><span>UNE ROUTINE QUI S'INSTALLE</span>
+    <div><b>courte</b><i></i><b>active</b><i></i><b>personnelle</b></div>
+  </section>
 
-    <section class="method-section" id="methode">
-        <div class="section-intro">
-            <p class="landing-kicker"><span></span> Une méthode simple</p>
-            <h2>Moins de listes.<br /><em>Plus de réflexes.</em></h2>
-        </div>
-        <div class="method-grid">
-            <article class="method-card method-feature"><span class="card-number">01</span>
-                <div class="method-icon">⌁</div>
-                <h3>Répondez,<br />pas seulement mémorisez.</h3>
-                <p>Chaque Rush vous fait retrouver l'article au bon moment, jusqu'à ce qu'il devienne intuitif.</p><a
-                    routerLink="/register">Découvrir le Rush <span>→</span></a>
-            </article>
-            <article class="method-card"><span class="card-number">02</span>
-                <div class="method-icon">◌</div>
-                <h3>Voyez vos progrès<br />prendre forme.</h3>
-                <p>Votre tableau de bord vous montre ce qui est acquis et ce qui mérite une nouvelle attention.</p>
-            </article>
-            <article class="method-card"><span class="card-number">03</span>
-                <div class="method-icon">↗</div>
-                <h3>Révisez<br />avec intention.</h3>
-                <p>Filtrez votre bibliothèque par niveau et progression pour consacrer votre temps aux bons mots.</p>
-            </article>
-        </div>
-    </section>
+  <section class="method-section" id="methode">
+    <div class="section-intro">
+      <p class="landing-kicker"><span>02</span> The game loop</p>
+      <h2>Trois moves.<br /><em>Un niveau supérieur.</em></h2>
+    </div>
+    <div class="method-grid">
+      <article class="method-card method-feature"><span class="card-number">01</span>
+        <div class="method-icon">⌁</div>
+        <h3>Répondez,<br />pas seulement mémorisez.</h3>
+        <p>Chaque Rush vous fait retrouver l'article au bon moment, jusqu'à ce qu'il devienne intuitif.</p><a
+          routerLink="/register">Découvrir le Rush <span>→</span></a>
+      </article>
+      <article class="method-card"><span class="card-number">02</span>
+        <div class="method-icon">◌</div>
+        <h3>Voyez vos progrès<br />prendre forme.</h3>
+        <p>Votre tableau de bord vous montre ce qui est acquis et ce qui mérite une nouvelle attention.</p>
+      </article>
+      <article class="method-card"><span class="card-number">03</span>
+        <div class="method-icon">↗</div>
+        <h3>Révisez<br />avec intention.</h3>
+        <p>Filtrez votre bibliothèque par niveau et progression pour consacrer votre temps aux bons mots.</p>
+      </article>
+    </div>
+  </section>
 
-    <section class="level-section">
-        <div>
-            <p class="landing-kicker"><span></span> Votre rythme, votre niveau</p>
-            <h2>Commencez là où<br /><em>vous êtes.</em></h2>
-            <p>De A1 à C2, ArtikelBuddy garde la difficulté lisible et la prochaine étape toujours à portée de vue.</p>
-        </div>
-        <div class="levels"><span class="level-done">A1 <b>✓</b></span><span class="level-current">A2 <small>en
-                    cours</small></span><span>B1</span><span>B2</span><span>C1</span><span>C2</span></div>
-    </section>
+  <section class="level-section">
+    <div>
+      <p class="landing-kicker"><span></span> Votre rythme, votre niveau</p>
+      <h2>Commencez là où<br /><em>vous êtes.</em></h2>
+      <p>De A1 à C2, ArtikelBuddy garde la difficulté lisible et la prochaine étape toujours à portée de vue.</p>
+    </div>
+    <div class="levels"><span class="level-done">A1 <b>✓</b></span><span class="level-current">A2 <small>en
+          cours</small></span><span>B1</span><span>B2</span><span>C1</span><span>C2</span></div>
+  </section>
 
-    <footer class="landing-footer"><a class="landing-brand" routerLink="/"><img src="favicon.svg"
-                alt="" /><span>ArtikelBuddy</span></a><span>Der, die, das. En confiance.</span><a
-            routerLink="/register">Commencer maintenant →</a></footer>
+  <footer class="landing-footer"><a class="landing-brand" routerLink="/"><img src="favicon.svg"
+        alt="" /><span>ArtikelBuddy</span></a><span>Der, die, das. En confiance.</span><a
+      routerLink="/register">Commencer maintenant →</a></footer>
 </main>

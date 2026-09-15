@@ -2,16 +2,16 @@
   display: flex;
   justify-content: space-between;
   align-items: end;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 }
 .words-head h1 {
-  font-family: var(--display);
-  font-size: 3.4rem;
-  letter-spacing: -0.06em;
-  margin: 9px 0;
+  font-size: clamp(3rem, 7vw, 6rem);
+  letter-spacing: -0.1em;
+  line-height: 0.8;
+  margin: 14px 0;
 }
 .dot {
-  color: var(--aqua);
+  color: var(--red);
 }
 .subtitle {
   color: var(--muted);
@@ -19,47 +19,65 @@
 }
 .word-count {
   text-align: right;
-  font-family: var(--display);
-  font-size: 2rem;
-  color: var(--deep);
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  color: var(--navy);
 }
 .word-count span {
   display: block;
-  font-family: var(--body);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0;
   color: var(--muted);
   margin-top: 3px;
 }
 .filters {
   display: flex;
+  align-items: end;
   gap: 12px;
   margin-bottom: 18px;
+  padding: 14px 16px;
+  background: var(--navy);
+  border-radius: 5px;
+  color: var(--white);
+}
+.filter-heading {
+  margin-right: auto;
+  color: var(--teal);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
 }
 .filters label {
-  font-size: 0.7rem;
+  font-size: 0.63rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-weight: 800;
-  color: var(--muted);
+  font-weight: 700;
+  color: rgba(253, 255, 252, 0.68);
 }
 .filters select {
   display: block;
   margin-top: 7px;
-  min-width: 170px;
-  padding: 11px 35px 11px 12px;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  background: white;
-  color: var(--ink);
+  min-width: 150px;
+  padding: 10px 32px 10px 11px;
+  border: 1px solid rgba(253, 255, 252, 0.2);
+  border-radius: 3px;
+  background: rgba(253, 255, 252, 0.08);
+  color: var(--white);
   font: inherit;
   text-transform: none;
   letter-spacing: 0;
 }
+.filters option {
+  color: var(--navy);
+}
 .words-table {
-  background: white;
+  background: var(--white);
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: 6px;
   overflow: hidden;
+  box-shadow: 8px 8px 0 rgba(46, 196, 182, 0.3);
 }
 .table-head,
 .word-row {
@@ -70,16 +88,15 @@
   padding: 16px 22px;
 }
 .table-head {
-  background: #f5faf8;
+  background: var(--paper);
   color: var(--muted);
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.11em;
-  font-weight: 800;
+  font-size: 0.62rem;
+  letter-spacing: 0.13em;
+  font-weight: 700;
 }
 .word-row {
   border-top: 1px solid var(--line);
-  min-height: 75px;
+  min-height: 79px;
 }
 .word-main {
   display: flex;
@@ -89,19 +106,19 @@
 .word-symbol {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  background: var(--pale);
-  color: var(--deep);
-  font-weight: 800;
+  width: 37px;
+  height: 37px;
+  border-radius: 4px;
+  background: var(--navy);
+  color: var(--teal);
+  font-weight: 700;
 }
 .word-main strong,
 .word-main div span {
   display: block;
 }
 .word-main div span {
-  font-size: 0.76rem;
+  font-size: 0.75rem;
   color: var(--muted);
   margin-top: 4px;
 }
@@ -116,34 +133,33 @@
 .translation-line small {
   flex: 0 0 22px;
   padding: 3px 4px;
-  border-radius: 4px;
-  background: #dff2f1;
-  color: var(--deep);
-  font-size: 0.6rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  border-radius: 3px;
+  background: var(--orange);
+  color: var(--navy);
+  font-size: 0.58rem;
+  font-weight: 700;
   line-height: 1;
   text-align: center;
 }
 .article-chip {
-  width: 37px;
-  height: 37px;
+  width: 39px;
+  height: 39px;
   display: grid;
   place-items: center;
-  border-radius: 10px;
-  font-weight: 800;
+  border-radius: 4px;
+  font-weight: 700;
 }
 .article-chip.der {
-  background: #dff2f8;
-  color: #22577a;
+  background: var(--navy);
+  color: var(--teal);
 }
 .article-chip.die {
-  background: #dff8e6;
-  color: #247447;
+  background: var(--red);
+  color: var(--white);
 }
 .article-chip.das {
-  background: #eaf0d9;
-  color: #5c7420;
+  background: var(--orange);
+  color: var(--navy);
 }
 .progress-cell {
   display: flex;
@@ -151,31 +167,31 @@
   gap: 9px;
 }
 .tiny-bar {
-  height: 6px;
-  background: var(--pale);
+  height: 7px;
+  background: rgba(1, 22, 39, 0.1);
   border-radius: 5px;
-  width: 58px;
+  width: 62px;
 }
 .tiny-bar i {
   display: block;
   height: 100%;
-  background: var(--aqua);
+  background: var(--teal);
   border-radius: 5px;
 }
 .progress-cell span,
 .attempts {
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   color: var(--muted);
 }
 .attempts small {
-  font-size: 0.68rem;
+  font-size: 0.66rem;
 }
 .pagination {
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   padding: 18px 3px;
 }
 .pagination div {
@@ -183,13 +199,16 @@
   gap: 7px;
 }
 .pagination button {
-  width: 35px;
-  height: 35px;
+  width: 36px;
+  height: 36px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: white;
-  color: var(--deep);
+  border-radius: 4px;
+  background: var(--white);
+  color: var(--navy);
   cursor: pointer;
+}
+.pagination button:hover:not(:disabled) {
+  background: var(--teal);
 }
 .pagination button:disabled {
   opacity: 0.4;
@@ -204,10 +223,11 @@
   gap: 12px;
 }
 .loader {
-  width: 30px;
-  height: 30px;
-  border: 3px solid var(--pale);
-  border-top-color: var(--deep);
+  width: 34px;
+  height: 34px;
+  border: 3px solid rgba(1, 22, 39, 0.12);
+  border-top-color: var(--teal);
+  border-right-color: var(--orange);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -223,7 +243,7 @@
 }
 .empty-state span {
   font-size: 2rem;
-  color: var(--aqua);
+  color: var(--orange);
 }
 @media (max-width: 700px) {
   .words-head {
@@ -236,6 +256,12 @@
   .filters {
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+  .filter-heading {
+    grid-column: 1/-1;
+  }
+  .filters label {
+    min-width: 0;
   }
   .filters select {
     min-width: 0;
@@ -259,8 +285,5 @@
   .article-chip {
     grid-column: 2;
     grid-row: 1;
-  }
-  .words-head h1 {
-    font-size: 2.8rem;
   }
 }

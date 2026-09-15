@@ -1,13 +1,22 @@
 <div class="auth-page">
-    <div class="auth-aside"><a class="brand" routerLink="/login"><span class="brand-mark">D<span>·</span>D</span><span
+    <aside class="auth-aside">
+        <a class="brand" routerLink="/login"><span class="brand-mark">D<span>·</span>D</span><span
                 class="brand-name">ArtikelBuddy</span></a>
-        <div class="aside-copy">
-            <p class="eyebrow">L'allemand, mot après mot</p>
-            <h1>Le bon article devient un réflexe.</h1>
-            <p>Des sessions courtes et une progression claire pour apprivoiser der, die et das.</p>
+        <div class="auth-brief">
+            <span class="brief-code">AB / TRAINING SYSTEM 01</span>
+            <div class="brief-pips"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="aside-copy">
+                <p class="eyebrow">L'allemand, mot après mot</p>
+                <h1>Le bon article devient un réflexe.</h1>
+                <p>Des missions courtes, des scores lisibles et un parcours qui vous donne envie de revenir.</p>
+            </div>
         </div>
-        <div class="aside-words"><span class="der">der</span><span class="die">die</span><span class="das">das</span>
+        <div class="aside-footer">
+            <div class="aside-words"><span class="der">der</span><span class="die">die</span><span
+                    class="das">das</span></div><span class="brief-status"><i></i> arena online</span>
         </div>
-    </div>
-    <section class="auth-panel"><ng-content /></section>
+    </aside>
+    <section class="auth-panel">
+        <div class="auth-panel-head"><span>PLAYER ACCESS</span><span>v2.0 / 2026</span></div><ng-content />
+    </section>
 </div>

@@ -1,53 +1,56 @@
-<section class="rush-head">
+<div class="rush-page">
+  <section class="rush-head">
     <div>
-        <p class="eyebrow">Mode entraînement</p>
-        <h1>Le rush<span class="dot">.</span></h1>
-        <p class="subtitle">Dix mots. Trois articles. Un réflexe de plus à chaque session.</p>
-    </div>@if (!game() && !summary()) {<div class="rush-meta"><span>●</span> Niveau {{ 'actuel' }}</div>}
-</section>@if (error()) {<p class="alert error">{{ error() }}</p>}@if (!game() && !summary()) {<section
+      <p class="eyebrow">Arcade / rapid recall</p>
+      <h1>RUSH<span class="dot">_</span></h1>
+      <p class="subtitle">Dix mots. Trois choix. Une chance de battre votre score.</p>
+    </div><a class="rush-exit" routerLink="/dashboard">Quitter le rush <span>×</span></a>@if (!game() && !summary()) {
+    <div class="rush-meta"><span>●</span> zone {{ 'actuelle' }}</div>}
+  </section>@if (error()) {<p class="alert error">{{ error() }}</p>}@if (!game() && !summary()) {<section
     class="rush-intro">
-    <div class="intro-number">10</div>
+    <div class="intro-number"><small>ROUND</small>10</div>
     <div>
-        <p class="eyebrow">Votre prochaine série</p>
-        <h2>Prêt à faire travailler vos réflexes ?</h2>
-        <p>Chaque mot apparaît sans son article. Choisissez vite, puis découvrez la réponse.</p><button
-            class="primary-button" type="button" (click)="start()" [disabled]="loading()">{{ loading() ?
-            'Préparation...' : 'Démarrer le rush' }} <span>→</span></button>
+      <p class="eyebrow">New challenge detected</p>
+      <h2>Prêt à lancer votre run ?</h2>
+      <p>Chaque mot apparaît sans son article. Choisissez vite, construisez votre combo.</p><button
+        class="primary-button" type="button" (click)="start()" [disabled]="loading()">{{ loading() ?
+        'Préparation...' : 'Démarrer le rush' }} <span>→</span></button>
     </div>
-</section>
-<div class="rules-row"><span><b>01</b> Un mot à la fois</span><span><b>02</b> Votre score se
-        construit</span><span><b>03</b> Les erreurs reviennent en révision</span></div>}@else if (summary(); as result)
-{<section class="result-card">
-    <p class="eyebrow">Session terminée</p>
-    <h2>Bien joué, vous avez tenu le rythme.</h2>
+  </section>
+  <div class="rules-row"><span><b>01</b> LOCK ON</span><span><b>02</b> BUILD COMBO</span><span><b>03</b> KEEP
+      LOOT</span>
+  </div>}@else if (summary(); as result)
+  {<section class="result-card">
+    <p class="eyebrow">Run complete</p>
+    <h2>Votre score est enregistré.</h2>
     <div class="big-score"><strong>{{ result.score }}</strong><span>/ {{ result.total_words }}<br>bonnes réponses</span>
     </div>
     <p class="result-note">{{ result.correct_words === result.total_words ? 'Tout est juste. Votre niveau monte.' :
-        result.words_to_review.length + ' mot(s) ajouté(s) à votre prochaine révision.' }}</p><a class="primary-button"
-        routerLink="/dashboard">Retour au tableau de bord <span>→</span></a><button class="text-button" type="button"
-        (click)="start()">Rejouer une série</button>
-</section>}@else if (game(); as active) {<section class="game-card">
+      result.words_to_review.length + ' mot(s) ajouté(s) à votre prochaine révision.' }}</p><a class="primary-button"
+      routerLink="/dashboard">Retour au tableau de bord <span>→</span></a><button class="text-button" type="button"
+      (click)="start()">Rejouer une série</button>
+  </section>}@else if (game(); as active) {<section class="game-card">
     <div class="game-top"><span class="counter">{{ currentIndex() + 1 }} <small>/ {{ active.words.length
-                }}</small></span>
-        <div class="bar"><i [style.width.%]="((currentIndex() + (result() ? 1 : 0)) / active.words.length) * 100"></i>
-        </div><span class="level-tag">En cours</span>
+          }}</small></span>
+      <div class="bar"><i [style.width.%]="((currentIndex() + (result() ? 1 : 0)) / active.words.length) * 100"></i>
+      </div><span class="level-tag">En cours</span>
     </div>
     <div class="question">
-        <p class="eyebrow">Quel article accompagne...</p>
-        <h2>{{ currentWord?.word }}</h2>
-        <div class="translations">
-            <span><small>Français</small>{{ currentWord?.fr_translation || '—' }}</span>
-            <span><small>English</small>{{ currentWord?.en_translation || '—' }}</span>
-        </div>
+      <p class="eyebrow">Target word / choose article</p>
+      <h2>{{ currentWord?.word }}</h2>
+      <div class="translations">
+        <span><small>Français</small>{{ currentWord?.fr_translation || '—' }}</span>
+        <span><small>English</small>{{ currentWord?.en_translation || '—' }}</span>
+      </div>
     </div>
     <div class="article-options">@for (article of articles; track article) {<button type="button" class="article-choice"
-            [class.selected]="selected() === article"
-            [class.correct]="result() && result()?.correct_article === article"
-            [class.wrong]="result() && selected() === article && !result()?.is_correct"
-            (click)="answer(article)"><span>{{ article }}</span><small>{{ article === 'der' ? 'masculin' : article ===
-                'die' ? 'féminin' : 'neutre' }}</small></button>}</div>@if (result(); as answer) {<div
-        class="answer-feedback" [class.success]="answer.is_correct"><strong>{{ answer.is_correct ? 'Exact !' : 'Raté.'
-            }}</strong>@if (answer.is_correct) {<span>Bonne réponse, continuez comme ça.</span>}<button
-            class="secondary-button" type="button" (click)="next()">{{ currentIndex() ===
-            active.words.length - 1 ? 'Voir mon résultat' : 'Mot suivant' }} →</button></div>}
-</section>}
+        [class.selected]="selected() === article" [class.correct]="result() && result()?.correct_article === article"
+        [class.wrong]="result() && selected() === article && !result()?.is_correct" (click)="answer(article)"><span>{{
+          article }}</span><small>{{ article === 'der' ? 'masculin' : article ===
+          'die' ? 'féminin' : 'neutre' }}</small></button>}</div>@if (result(); as answer) {<div class="answer-feedback"
+      [class.success]="answer.is_correct"><strong>{{ answer.is_correct ? 'Exact !' : 'Raté.'
+        }}</strong>@if (answer.is_correct) {<span>Bonne réponse, continuez comme ça.</span>}<button
+        class="secondary-button" type="button" (click)="next()">{{ currentIndex() ===
+        active.words.length - 1 ? 'Voir mon résultat' : 'Mot suivant' }} →</button></div>}
+  </section>}
+</div>
